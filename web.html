@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Harga Buah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .equation {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        .result {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.8s forwards;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .verification {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff3e0;
+            border-radius: 8px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 1.2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fruit-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .highlight {
+            background: #e3f2fd;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .fruit-emoji {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .fruit-emoji.jeruk { animation-delay: 0s; }
+        .fruit-emoji.pepaya { animation-delay: 0.5s; }
+        .fruit-emoji.salak { animation-delay: 1s; }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-5px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(5px) rotate(-5deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .fruit-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-fruit {
+            position: absolute;
+            font-size: 2em;
+            animation: floatAcross 15s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes floatAcross {
+            0% {
+                transform: translate(-100px, random(100%));
+            }
+            100% {
+                transform: translate(calc(100vw + 100px), random(100%));
+            }
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px 0;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background: #45a049;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="fruit-container" id="fruitContainer"></div>
+
+    <div class="container">
+        <h1>🛒 Kalkulator Harga Buah</h1>
+        
+        <!-- Halaman 1: Input -->
+        <div class="page active" id="inputPage">
+            <div class="equation">
+                <h3>Masukkan Persamaan:</h3>
+                <div class="input-group">
+                    <label>Persamaan 1:</label>
+                    <input type="number" id="jeruk1" placeholder="Jumlah kg jeruk" required>
+                    <input type="number" id="pepaya1" placeholder="Jumlah kg pepaya" required>
+                    <input type="number" id="salak1" placeholder="Jumlah kg salak" required>
+                    <input type="number" id="total1" placeholder="Total harga (Rp)" required>
+                </div>
+                <div class="input-group">
+                    <label>Persamaan 2:</label>
+                    <input type="number" id="jeruk2" placeholder="Jumlah kg jeruk" required>
+                    <input type="number" id="pepaya2" placeholder="Jumlah kg pepaya" required>
+                    <input type="number" id="salak2" placeholder="Jumlah kg salak" required>
+                    <input type="number" id="total2" placeholder="Total harga (Rp)" required>
+                </div>
+                <div class="input-group">
+                    <label>Persamaan 3:</label>
+                    <input type="number" id="jeruk3" placeholder="Jumlah kg jeruk" required>
+                    <input type="number" id="pepaya3" placeholder="Jumlah kg pepaya" required>
+                    <input type="number" id="salak3" placeholder="Jumlah kg salak" required>
+                    <input type="number" id="total3" placeholder="Total harga (Rp)" required>
+                </div>
+            </div>
+            <button class="button" onclick="hitungHarga()">Hitung Harga</button>
+        </div>
+
+        <!-- Halaman 2: Hasil -->
+        <div class="page" id="resultPage">
+            <div class="equation" style="animation-delay: 0.2s;">
+                <h3>Persamaan:</h3>
+                <p id="eq1"></p>
+                <p id="eq2"></p>
+                <p id="eq3"></p>
+            </div>
+
+            <div class="result">
+                <h3>Harga per Kilogram:</h3>
+                <div class="price-item" style="animation-delay: 1s;">
+                    <span><span class="fruit-emoji jeruk">🍊</span> Jeruk</span>
+                    <span class="highlight" id="hargaJeruk">Rp 0</span>
+                </div>
+                <div class="price-item" style="animation-delay: 1.2s;">
+                    <span><span class="fruit-emoji pepaya">🥭</span> Pepaya</span>
+                    <span class="highlight" id="hargaPepaya">Rp 0</span>
+                </div>
+                <div class="price-item" style="animation-delay: 1.4s;">
+                    <span><span class="fruit-emoji salak">🥝</span> Salak</span>
+                    <span class="highlight" id="hargaSalak">Rp 0</span>
+                </div>
+            </div>
+
+            <div class="verification">
+                <h3>Verifikasi Hasil:</h3>
+                <div class="verify-item">
+                    <p>Persamaan 1:</p>
+                    <div class="verify-calc" id="verify1"></div>
+                    <div class="verify-result" id="verify1Result"></div>
+                </div>
+                <div class="verify-item">
+                    <p>Persamaan 2:</p>
+                    <div class="verify-calc" id="verify2"></div>
+                    <div class="verify-result" id="verify2Result"></div>
+                </div>
+                <div class="verify-item">
+                    <p>Persamaan 3:</p>
+                    <div class="verify-calc" id="verify3"></div>
+                    <div class="verify-result" id="verify3Result"></div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="button" onclick="showPage('inputPage')">Kembali</button>
+                <button class="button" onclick="resetForm()">Hitung Ulang</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animasi untuk price-item
+        document.querySelectorAll('.price-item').forEach((item, index) => {
+            item.style.animationDelay = `${1 + (index * 0.2)}s`;
+        });
+
+        // Animasi untuk equation
+        document.querySelectorAll('.equation p').forEach((eq, index) => {
+            eq.style.animationDelay = `${0.2 + (index * 0.2)}s`;
+            eq.style.opacity = '0';
+            eq.style.animation = 'slideIn 0.5s ease-out forwards';
+        });
+
+        // Tambahkan script untuk membuat buah mengambang di background
+        function createFloatingFruits() {
+            const fruits = ['🍊', '🥭', '🥝'];
+            const container = document.getElementById('fruitContainer');
+            
+            setInterval(() => {
+                const fruit = document.createElement('div');
+                fruit.className = 'floating-fruit';
+                fruit.textContent = fruits[Math.floor(Math.random() * fruits.length)];
+                
+                // Random starting position
+                fruit.style.top = `${Math.random() * 100}%`;
+                fruit.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                container.appendChild(fruit);
+                
+                // Remove fruit after animation
+                setTimeout(() => {
+                    fruit.remove();
+                }, 25000);
+            }, 2000);
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID').format(angka);
+        }
+
+        function hitungHarga() {
+            // Mengambil nilai input
+            const persamaan1 = {
+                jeruk: parseFloat(document.getElementById('jeruk1').value),
+                pepaya: parseFloat(document.getElementById('pepaya1').value),
+                salak: parseFloat(document.getElementById('salak1').value),
+                total: parseFloat(document.getElementById('total1').value)
+            };
+            // ... ambil nilai persamaan 2 dan 3 ...
+
+            // Di sini tambahkan perhitungan menggunakan numpy.js atau metode lain
+            // Untuk sementara kita gunakan nilai contoh
+            document.getElementById('hargaJeruk').textContent = `Rp ${formatRupiah(30000)}`;
+            document.getElementById('hargaPepaya').textContent = `Rp ${formatRupiah(20000)}`;
+            document.getElementById('hargaSalak').textContent = `Rp ${formatRupiah(20000)}`;
+
+            // Update persamaan
+            document.getElementById('eq1').textContent = `${persamaan1.jeruk}kg jeruk + ${persamaan1.pepaya}kg pepaya + ${persamaan1.salak}kg salak = Rp ${formatRupiah(persamaan1.total)}`;
+            // ... update persamaan 2 dan 3 ...
+
+            showPage('resultPage');
+        }
+
+        function resetForm() {
+            document.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            });
+            showPage('inputPage');
+        }
+
+        createFloatingFruits();
+    </script>
+</body>
+</html>

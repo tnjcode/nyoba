@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wirasena Robotics Team #28731</title>
+    <link rel="icon" type="image/png" href="https://instagram.fkno3-1.fna.fbcdn.net/v/t51.2885-19/428160504_1101916584525271_8430256544366783400_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.fkno3-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=gPBcGUNe0EIAX_UXJWM&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfAGXGZGJZF5bZONJbXUVZQxD_Hy_Hs_2kDFBXXEGBZQmA&oe=65F5E2B2&_nc_sid=8b3546">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-orange: #D35400;
+            --secondary-orange: #E67E22;
+            --light-orange: #FFF3E0;
+            --dark-brown: #6E2C00;
+            --cream: #FDF2E9;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--cream);
+            color: #333;
+        }
+
+        .navbar {
+            background-color: var(--dark-brown) !important;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .navbar-brand {
+            color: var(--secondary-orange) !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--light-orange) !important;
+            font-size: 1.1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-orange) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(211, 84, 0, 0.8), rgba(110, 44, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1535378620166-273708d44e4c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-orange);
+            padding: 120px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Palatino', serif;
+            color: var(--dark-brown);
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: var(--light-orange);
+            border-radius: 8px;
+        }
+
+        .card-header {
+            background-color: var(--primary-orange) !important;
+            color: var(--light-orange) !important;
+            border-radius: 8px 8px 0 0 !important;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-orange) !important;
+            border-color: var(--primary-orange) !important;
+            color: var(--light-orange);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-brown) !important;
+            border-color: var(--dark-brown) !important;
+        }
+
+        .btn-success {
+            background-color: var(--primary-orange) !important;
+            border-color: var(--primary-orange) !important;
+        }
+
+        .btn-success:hover {
+            background-color: var(--dark-brown) !important;
+            border-color: var(--dark-brown) !important;
+        }
+
+        .team-member {
+            background-color: var(--light-orange);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--primary-orange);
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            font-family: 'Georgia', serif;
+        }
+
+        footer {
+            background-color: var(--dark-brown) !important;
+            color: var(--light-orange) !important;
+        }
+
+        .social-links a {
+            color: var(--secondary-orange) !important;
+        }
+
+        .social-links a:hover {
+            color: var(--light-orange) !important;
+        }
+
+        .activity-card {
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .list-group-item {
+            background-color: var(--cream);
+            border-color: var(--secondary-orange);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--light-orange);
+        }
+
+        .achievement-card {
+            border-left: 5px solid var(--primary-orange);
+            margin-bottom: 20px;
+        }
+
+        .strategic-point {
+            background-color: var(--light-orange);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .list-group-item h5 {
+            color: var(--primary-orange);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://instagram.fkno3-1.fna.fbcdn.net/v/t51.2885-19/428160504_1101916584525271_8430256544366783400_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.fkno3-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=gPBcGUNe0EIAX_UXJWM&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfAGXGZGJZF5bZONJbXUVZQxD_Hy_Hs_2kDFBXXEGBZQmA&oe=65F5E2B2&_nc_sid=8b3546" 
+                    alt="Wirasena Logo" 
+                    height="40" 
+                    class="d-inline-block align-text-top me-2"
+                    style="border-radius: 50%;">
+                Wirasena #28731
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vision-mission">Visi & Misi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#activities">Kegiatan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ftc-scout">FTC Scout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Tim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container text-center">
+            <h1>WIRASENA ROBOTICS TEAM</h1>
+            <h2>FTC #28731</h2>
+            <p class="lead">Membangun Masa Depan Melalui Robotika dan Inovasi</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Tentang Kami</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>Wirasena adalah tim robotik yang berpartisipasi dalam kompetisi FIRST Tech Challenge (FTC) dengan nomor tim #28731. Tim kami terdiri dari siswa-siswi berbakat yang memiliki passion dalam bidang robotika, programming, dan engineering.</p>
+                </div>
+                <div class="col-lg-6">
+                    <p>Dibentuk dengan semangat inovasi dan kolaborasi, tim kami fokus pada pengembangan solusi robotik yang kreatif sambil membangun keterampilan dalam bidang STEM (Science, Technology, Engineering, and Mathematics).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission -->
+    <section id="vision-mission" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Visi & Misi</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Visi</h3>
+                    <p>Menjadi tim robotik terkemuka yang menginspirasi generasi muda untuk mengembangkan inovasi teknologi dan memberikan dampak positif bagi masyarakat.</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Misi</h3>
+                    <ul>
+                        <li>Mengembangkan kemampuan anggota tim dalam bidang STEM</li>
+                        <li>Menciptakan solusi robotik inovatif untuk tantangan FTC</li>
+                        <li>Mempromosikan robotika dan teknologi di kalangan pelajar</li>
+                        <li>Membangun kerjasama tim dan leadership skills</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities -->
+    <section id="activities" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Kegiatan Kami</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card activity-card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="FTC Competition">
+                        <div class="card-body">
+                            <h5 class="card-title">Kompetisi FTC</h5>
+                            <p class="card-text">Berpartisipasi dalam kompetisi FIRST Tech Challenge tingkat nasional dan internasional.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card activity-card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Workshop">
+                        <div class="card-body">
+                            <h5 class="card-title">Workshop Robotika</h5>
+                            <p class="card-text">Mengadakan workshop dan pelatihan robotika untuk siswa dan masyarakat.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card activity-card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Community Outreach">
+                        <div class="card-body">
+                            <h5 class="card-title">Community Outreach</h5>
+                            <p class="card-text">Melakukan kegiatan sosial dan edukasi robotika di masyarakat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FTC Scout Section -->
+    <section id="ftc-scout" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">FTC Scout</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0">Robot Specifications</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <strong>Dimensions:</strong> 18" x 18" x 18"
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Drive Train:</strong> Mecanum Drive
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Motors:</strong> 4x GoBILDA 5203
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Control System:</strong> REV Control Hub
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Programming Language:</strong> Java
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h4 class="mb-0">Game Performance</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <strong>Autonomous:</strong>
+                                    <ul>
+                                        <li>Pixel placement capability</li>
+                                        <li>Line detection</li>
+                                        <li>Team prop detection</li>
+                                    </ul>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>TeleOp:</strong>
+                                    <ul>
+                                        <li>Efficient pixel intake system</li>
+                                        <li>Precise backdrop scoring</li>
+                                        <li>Drone launch capability</li>
+                                    </ul>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>End Game:</strong>
+                                    <ul>
+                                        <li>Climbing mechanism</li>
+                                        <li>Autonomous parking</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Competition History -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            <h4 class="mb-0">Competition History</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Event</th>
+                                            <th>Date</th>
+                                            <th>Rank</th>
+                                            <th>W-L-T</th>
+                                            <th>Awards</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Vietnam Championship</td>
+                                            <td>February 23, 2025</td>
+                                            <td>23rd</td>
+                                            <td>2-4-0</td>
+                                            <td>Judges' Choice Award</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Tambahkan Quick Stats -->
+                            <div class="mt-4">
+                                <h5>Quick Stats - Vietnam Championship</h5>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6>Total NP</h6>
+                                                <p class="mb-0">41.88</p>
+                                                <small>World Rank: 3483rd (52.00%)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6>Auto</h6>
+                                                <p class="mb-0">4.45</p>
+                                                <small>World Rank: 4238th (41.59%)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6>Teleop</h6>
+                                                <p class="mb-0">37.43</p>
+                                                <small>World Rank: 3419th (52.88%)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6>Endgame</h6>
+                                                <p class="mb-0">2.33</p>
+                                                <small>World Rank: 5974th (17.66%)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Update Match History sesuai FTC Scout -->
+                            <div class="mt-4">
+                                <h5>Match History - Vietnam Championship</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Match</th>
+                                                <th>Score</th>
+                                                <th>Alliance</th>
+                                                <th>Result</th>
+                                                <th>Partners/Opponents</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="background-color: rgba(255, 0, 0, 0.1)">
+                                                <td>Q-1</td>
+                                                <td>51-73</td>
+                                                <td><span class="badge bg-danger">Red</span></td>
+                                                <td><span class="badge bg-danger">LOSS</span></td>
+                                                <td>With: STEAM GIA THIEU | Against: VSERP, FSC-QNiTRos</td>
+                                            </tr>
+                                            <tr style="background-color: rgba(0, 0, 255, 0.1)">
+                                                <td>Q-8</td>
+                                                <td>95-114</td>
+                                                <td><span class="badge bg-primary">Blue</span></td>
+                                                <td><span class="badge bg-danger">LOSS</span></td>
+                                                <td>With: ThaiPhien Open STEAM | Against: FPT Da Nang 1, FSC Thanh Hoa</td>
+                                            </tr>
+                                            <tr style="background-color: rgba(255, 0, 0, 0.1)">
+                                                <td>Q-15</td>
+                                                <td>59-13</td>
+                                                <td><span class="badge bg-danger">Red</span></td>
+                                                <td><span class="badge bg-danger">LOSS</span></td>
+                                                <td>With: AGT | Against: Science Robotics Club, Team LAO B</td>
+                                            </tr>
+                                            <tr style="background-color: rgba(0, 0, 255, 0.1)">
+                                                <td>Q-22</td>
+                                                <td>155-130</td>
+                                                <td><span class="badge bg-primary">Blue</span></td>
+                                                <td><span class="badge bg-success">WIN</span></td>
+                                                <td>With: FPT Da Nang 2 | Against: FRITS, Rise And Shine</td>
+                                            </tr>
+                                            <tr style="background-color: rgba(255, 0, 0, 0.1)">
+                                                <td>Q-29</td>
+                                                <td>26-109</td>
+                                                <td><span class="badge bg-danger">Red</span></td>
+                                                <td><span class="badge bg-danger">LOSS</span></td>
+                                                <td>With: Green Ocean | Against: Team LAO A, Hope School HRC</td>
+                                            </tr>
+                                            <tr style="background-color: rgba(0, 0, 255, 0.1)">
+                                                <td>Q-36</td>
+                                                <td>50-45</td>
+                                                <td><span class="badge bg-primary">Blue</span></td>
+                                                <td><span class="badge bg-success">WIN</span></td>
+                                                <td>With: RIAN - Robots In A Nutshell | Against: Green Star Anise, PEOE_2025</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Members -->
+    <section id="team" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Anggota Tim</h2>
+            <div class="row text-center">
+                <!-- Row 1 -->
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="path_to_ardan_image" alt="Ardan">
+                        <h4 class="mt-3">Ardan</h4>
+                        <p>CAPTAIN & Business</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="path_to_faiz_image" alt="Faiz">
+                        <h4 class="mt-3">Faiz</h4>
+                        <p>Chief Engineer & Business</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="path_to_nabil_image" alt="Nabil">
+                        <h4 class="mt-3">Nabil</h4>
+                        <p>Programmer</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="path_to_faiz_image" alt="Faiz">
+                        <h4 class="mt-3">Faiz</h4>
+                        <p>Engineer & Programmer</p>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="path_to_nabil_image" alt="Nabil">
+                        <h4 class="mt-3">Nabil</h4>
+                        <p>Designer</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="path_to_ardan_image" alt="Ardan">
+                        <h4 class="mt-3">Ardan</h4>
+                        <p>Engineer & Business</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="path_to_faiz_image" alt="Faiz">
+                        <h4 class="mt-3">Faiz</h4>
+                        <p>Media</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="path_to_nabil_image" alt="Nabil">
+                        <h4 class="mt-3">Nabil</h4>
+                        <p>Media</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Team Achievements section -->
+    <section id="achievements" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Team's Achievement</h2>
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Building Confidence and Leadership</h5>
+                            <p>Members are better at managing their responsibilities and time management. They have developed strong communication skills and learned to work effectively in teams.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Better Mechanical Skills</h5>
+                            <p>Team members have improved their understanding of mechanical parts and understanding how different drive bases and other systems work. They also learned troubleshooting skills.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Advanced Programming Skills</h5>
+                            <p>The team still used algorithms, but they have improved their programming abilities.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Enhancing Creativity and Attention to Detail</h5>
+                            <p>Through robot design, media content, and strategy planning, members became more detail-oriented and creative.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Game Approach section -->
+    <section id="game-approach" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Game Approach</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Our Approach on Designing the Robot</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <h5>One Task at a Time, But Make It Fast</h5>
+                                    <p>Focus on making each task efficient and reliable.</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Stability is Key</h5>
+                                    <p>Prioritize robot stability and mechanical reliability.</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Progressive Friendly, Driver Approved</h5>
+                                    <p>Design with driver comfort and ease of use in mind.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Strategic Consideration Points</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h5>AUTONOMOUS</h5>
+                                    <ul>
+                                        <li>Spike/Team Prop Detection</li>
+                                        <li>Backdrop Pixel</li>
+                                        <li>Total Point: 5 points</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>TELE OP</h5>
+                                    <ul>
+                                        <li>Pixel placement</li>
+                                        <li>Backdrop scoring</li>
+                                        <li>Total Point: 70</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>END GAME</h5>
+                                    <ul>
+                                        <li>Additional bonus points: 150</li>
+                                        <li>Total points: 150</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Hubungi Kami</h2>
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <form id="whatsappForm" onsubmit="sendWhatsApp(event)">
+                        <div class="mb-3">
+                            <input type="text" id="name" class="form-control" placeholder="Nama" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" id="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea id="message" class="form-control" rows="5" placeholder="Pesan" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fab fa-whatsapp me-2"></i>Kirim via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Wirasena Robotics Team #28731. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/wirasena.team/" class="text-white me-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+    <script>
+    function sendWhatsApp(e) {
+        e.preventDefault();
+        
+        // Ambil nilai dari form
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        
+        // Nomor WhatsApp tujuan
+        const phoneNumber = "6285877901609"; // Nomor WA tim Wirasena
+        
+        // Format pesan
+        const text = `Nama: ${name}%0AEmail: ${email}%0APesan: ${message}`;
+        
+        // Buat URL WhatsApp
+        const url = `https://wa.me/${phoneNumber}?text=${text}`;
+        
+        // Buka WhatsApp di tab baru
+        window.open(url, '_blank');
+    }
+    </script>
+
+</body>
+</html>
