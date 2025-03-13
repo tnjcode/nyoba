@@ -1,0 +1,32 @@
+{
+  "name": "wirasena-robotics-website",
+  "version": "1.0.0",
+  "description": "Official website for Wirasena Robotics Team #28731",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve",
+    "dev": "serve -l 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wirasena-team/website"
+  },
+  "keywords": [
+    "wirasena",
+    "robotics",
+    "ftc",
+    "first-tech-challenge",
+    "team-28731"
+  ],
+  "author": "Wirasena Robotics Team",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^14.2.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 
